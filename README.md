@@ -3,7 +3,7 @@
 These Python examples are intended to help you getting started with the analysis of travel time data or passenger data of Verkehrsbetriebe Zürich (VBZ), the public transport operator in the Swiss city of Zurich.
 The datasets as shown below are published as Open Government Data (OGD) at the [Open Data Portal](https://data.stadt-zuerich.ch).
 
-The R version of the examples can be found here (**Link...**)
+The R version of the examples can be found [here](https://github.com/VerkehrsbetriebeZuerich/ogd_examples_R).
 
 
 Also have a look at other showcases:
