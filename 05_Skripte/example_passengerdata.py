@@ -38,6 +38,7 @@ wd = os.chdir("*\\01_Daten\\01_Input\\")
 HALTESTELLEN = pd.read_csv("HALTESTELLEN.csv", sep=";")
 TAGTYP = pd.read_csv("TAGTYP.csv", sep=";")
 LINIE = pd.read_csv("LINIE.csv", sep=";")
+GEFAESSGROESSE = pd.read_csv("GEFAESSGROESSE.csv", sep=";")
 
 #### Load table "REISENDE": the passenger data is stored there
 REISENDE = pd.read_csv("REISENDE.csv", sep=";")
@@ -59,9 +60,14 @@ reisende_haltestellen_tagtyp = pd.merge(reisende_haltestellen,TAGTYP,how="left",
                          right_on=["Tagtyp_Id"])
 
 #### match reisende_haltestellen_tagtyp with LINIE according to the line ids (= "Linien_Id")
-reisende_full = pd.merge(reisende_haltestellen_tagtyp,LINIE,how="left",
+reisende_haltestellen_tagtyp_linie = pd.merge(reisende_haltestellen_tagtyp,LINIE,how="left",
                          left_on=["Linien_Id"],
                          right_on=["Linien_Id"])
+
+#### match reisende_haltestellen_tagtyp_linie with GEFAESSGROESSE according to the id of the scheduled trip (= "Plan_Fahrt_Id")
+reisende_full = pd.merge(reisende_haltestellen_tagtyp_linie,GEFAESSGROESSE,how="left",
+                         left_on=["Plan_Fahrt_Id"],
+                         right_on=["Plan_Fahrt_Id"])
 
 #### Example Analyses ####
 

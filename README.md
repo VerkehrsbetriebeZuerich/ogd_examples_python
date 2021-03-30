@@ -52,6 +52,8 @@ passenger data ("Reisende.csv") as well as three matching tables from the [Open 
 - **[TAGTYP.csv](https://data.stadt-zuerich.ch/dataset/vbz_fahrgastzahlen_ogd/resource/09ffe483-19da-495e-81c6-711ae8dd49d3?inner_span=True)**: Matching table, contains information about the validation of timetables etc.  
 
 - **[HALTESTELLEN.csv](https://data.stadt-zuerich.ch/dataset/vbz_fahrgastzahlen_ogd/resource/948b6347-8988-4705-9b08-45f0208a15da)**: Matching table, contains information about stops names etc.  
+- **[GEFAESSGROESSE.csv](https://data.stadt-zuerich.ch/dataset/vbz_fahrgastzahlen_ogd/resource/718d9cb6-8daf-49d6-a5b2-687d3da78c58)**: Matching table, contains information about vehicle capacity.  
+
 
 **Output**
 
