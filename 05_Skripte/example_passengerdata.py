@@ -47,7 +47,7 @@ REISENDE = pd.read_csv("REISENDE.csv", sep=";")
 # In order to get the complete main passengers table, you need to match REISENDE with HALTESTELLEN, TAGTYP and LINIE
 
 # first drop the column "Linienname" from REISENDE
-REISENDE = REISENDE.drop('Linienname', 1)
+REISENDE = REISENDE.drop(labels='Linienname', axis=1)
 
 #### match REISENDE with HALTESTELLEN according to the stops ids (= "Haltestellen_Id")
 reisende_haltestellen = pd.merge(REISENDE,HALTESTELLEN,how="left",
@@ -68,7 +68,7 @@ reisende_haltestellen_tagtyp_linie = pd.merge(reisende_haltestellen_tagtyp,LINIE
 reisende_full = pd.merge(reisende_haltestellen_tagtyp_linie,GEFAESSGROESSE,how="left",
                          left_on=["Plan_Fahrt_Id"],
                          right_on=["Plan_Fahrt_Id"])
-
+reisende_full = reisende_haltestellen_tagtyp_linie
 #### Example Analyses ####
 
 #### Passengers per line
@@ -77,29 +77,29 @@ reisende_full = pd.merge(reisende_haltestellen_tagtyp_linie,GEFAESSGROESSE,how="
 # passengers per line per year
 # group by Linien_Id etc., multiply Einsteiger (= passengers getting into the vehicle) with Tage_DTV (= extrapolation factor for the whole year) and calculate the sum
 pax_line_year = reisende_full.set_index(["Linien_Id", "Linienname", "Linienname_Fahrgastauskunft"]) \
-                [['Einsteiger','Tage_DTV']].prod(axis=1).sum(level=[0,1,2]).reset_index(name='pax_per_year').round(0)
+                [['Einsteiger','Tage_DTV']].prod(axis=1).groupby(level = [0, 1, 2]).sum().reset_index(name='pax_per_year').round(0)
 
 
 # passengers per average Monday-Friday work day (DWV) / average Monday-Sunday day (DTV) / average Saturday (Sa) / average Sunday (So) / average Saturday night (Sa_n) / 
 # average Sunday night (So_n)
 einsteiger_tage_dtv = reisende_full.set_index(["Linien_Id", "Linienname", "Linienname_Fahrgastauskunft"]) \
-        [['Einsteiger','Tage_DTV']].prod(axis=1).div(365).sum(level=[0,1,2]).reset_index(name='pax_per_DTV').round(0)
+        [['Einsteiger','Tage_DTV']].prod(axis=1).div(365).groupby(level = [0, 1, 2]).sum().reset_index(name='pax_per_DTV').round(0)
 
 einsteiger_tage_dwv = reisende_full.set_index(["Linien_Id", "Linienname", "Linienname_Fahrgastauskunft"]) \
-        [['Einsteiger','Tage_DWV']].prod(axis=1).div(251).sum(level=[0,1,2]).reset_index(name='pax_per_DWV').round(0)
+        [['Einsteiger','Tage_DWV']].prod(axis=1).div(251).groupby(level = [0, 1, 2]).sum().reset_index(name='pax_per_DWV').round(0)
 
 einsteiger_tage_sa = reisende_full.set_index(["Linien_Id", "Linienname", "Linienname_Fahrgastauskunft"]) \
-            [['Einsteiger','Tage_SA']].prod(axis=1).div(52).sum(level=[0,1,2]).reset_index(name='pax_per_Sa').round(0)
+            [['Einsteiger','Tage_SA']].prod(axis=1).div(52).groupby(level = [0, 1, 2]).sum().reset_index(name='pax_per_Sa').round(0)
 
 einsteiger_tage_so = reisende_full.set_index(["Linien_Id", "Linienname", "Linienname_Fahrgastauskunft"]) \
-            [['Einsteiger','Tage_SO']].prod(axis=1).div(62).sum(level=[0,1,2]).reset_index(name='pax_per_So').round(0)
+            [['Einsteiger','Tage_SO']].prod(axis=1).div(62).groupby(level = [0, 1, 2]).sum().reset_index(name='pax_per_So').round(0)
 
 
 einsteiger_tage_sa_n = reisende_full.set_index(["Linien_Id", "Linienname", "Linienname_Fahrgastauskunft"]) \
-        [['Einsteiger','Tage_SA_N']].prod(axis=1).div(52).sum(level=[0,1,2]).reset_index(name='pax_per_Sa_N').round(0)
+        [['Einsteiger','Tage_SA_N']].prod(axis=1).div(52).groupby(level = [0, 1, 2]).sum().reset_index(name='pax_per_Sa_N').round(0)
 
 einsteiger_tage_so_n = reisende_full.set_index(["Linien_Id", "Linienname", "Linienname_Fahrgastauskunft"]) \
-        [['Einsteiger','Tage_SO_N']].prod(axis=1).div(52).sum(level=[0,1,2]).reset_index(name='pax_per_So_N').round(0)
+        [['Einsteiger','Tage_SO_N']].prod(axis=1).div(52).groupby(level = [0, 1, 2]).sum().reset_index(name='pax_per_So_N').round(0)
 
 # merge the day type data frames to a list
 pax_line_year_day_type = [df.set_index(["Linien_Id", "Linienname", "Linienname_Fahrgastauskunft"]) \
@@ -117,28 +117,28 @@ pax_line_year_day_type = pd.concat(pax_line_year_day_type, axis=1).reset_index()
 # passengers per stop per year
 # group by Haltestellen_Id etc., multiply Einsteiger (= passengers getting into the vehicle) with Tage_DTV (= extrapolation factor for the whole year) and calculate the sum
 pax_stop_year = reisende_full.set_index(["Haltestellen_Id", "Haltestellennummer", "Haltestellenlangname"]) \
-                [['Einsteiger','Tage_DTV']].prod(axis=1).sum(level=[0,1,2]).reset_index(name='pax_per_year').round(0)
+                [['Einsteiger','Tage_DTV']].prod(axis=1).groupby(level = [0, 1, 2]).sum().reset_index(name='pax_per_year').round(0)
 
 # passengers per average Monday-Friday work day (DWV) / average Monday-Sunday day (DTV) / average Saturday (Sa) / average Sunday (So) / average Saturday night (Sa_n) / 
 # average Sunday night (So_n)
 einsteiger_stops_tage_dtv = reisende_full.set_index(["Haltestellen_Id", "Haltestellennummer", "Haltestellenlangname"]) \
-        [['Einsteiger','Tage_DTV']].prod(axis=1).div(365).sum(level=[0,1,2]).reset_index(name='pax_per_DTV').round(0)
+        [['Einsteiger','Tage_DTV']].prod(axis=1).div(365).groupby(level = [0, 1, 2]).sum().reset_index(name='pax_per_DTV').round(0)
 
 einsteiger_stops_tage_dwv = reisende_full.set_index(["Haltestellen_Id", "Haltestellennummer", "Haltestellenlangname"]) \
-        [['Einsteiger','Tage_DWV']].prod(axis=1).div(251).sum(level=[0,1,2]).reset_index(name='pax_per_DWV').round(0)
+        [['Einsteiger','Tage_DWV']].prod(axis=1).div(251).groupby(level = [0, 1, 2]).sum().reset_index(name='pax_per_DWV').round(0)
 
 einsteiger_stops_tage_sa = reisende_full.set_index(["Haltestellen_Id", "Haltestellennummer", "Haltestellenlangname"]) \
-            [['Einsteiger','Tage_SA']].prod(axis=1).div(52).sum(level=[0,1,2]).reset_index(name='pax_per_Sa').round(0)
+            [['Einsteiger','Tage_SA']].prod(axis=1).div(52).groupby(level = [0, 1, 2]).sum().reset_index(name='pax_per_Sa').round(0)
 
 einsteiger_stops_tage_so = reisende_full.set_index(["Haltestellen_Id", "Haltestellennummer", "Haltestellenlangname"]) \
-            [['Einsteiger','Tage_SO']].prod(axis=1).div(62).sum(level=[0,1,2]).reset_index(name='pax_per_So').round(0)
+            [['Einsteiger','Tage_SO']].prod(axis=1).div(62).groupby(level = [0, 1, 2]).sum().reset_index(name='pax_per_So').round(0)
 
 
 einsteiger_stops_tage_sa_n = reisende_full.set_index(["Haltestellen_Id", "Haltestellennummer", "Haltestellenlangname"])\
-        [['Einsteiger','Tage_SA_N']].prod(axis=1).div(52).sum(level=[0,1,2]).reset_index(name='pax_per_Sa_N').round(0)
+        [['Einsteiger','Tage_SA_N']].prod(axis=1).div(52).groupby(level = [0, 1, 2]).sum().reset_index(name='pax_per_Sa_N').round(0)
 
 einsteiger_stops_tage_so_n = reisende_full.set_index(["Haltestellen_Id", "Haltestellennummer", "Haltestellenlangname"])\
-        [['Einsteiger','Tage_SO_N']].prod(axis=1).div(52).sum(level=[0,1,2]).reset_index(name='pax_per_So_N').round(0)
+        [['Einsteiger','Tage_SO_N']].prod(axis=1).div(52).groupby(level = [0, 1, 2]).sum().reset_index(name='pax_per_So_N').round(0)
 
 # merge the day type data frames to a list
 pax_stops_year_day_type = [df.set_index(["Haltestellen_Id", "Haltestellennummer", "Haltestellenlangname"]) for df in \
@@ -147,5 +147,3 @@ pax_stops_year_day_type = [df.set_index(["Haltestellen_Id", "Haltestellennummer"
 
 # concatenate the list on columns to a data frame
 pax_stops_year_day_type = pd.concat(pax_stops_year_day_type, axis=1).reset_index()
-
-
