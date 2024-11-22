@@ -6,12 +6,7 @@ The datasets as shown below are published as Open Government Data (OGD) at the [
 The R version of the examples can be found [here](https://github.com/VerkehrsbetriebeZuerich/ogd_examples_R).
 
 
-Also have a look at other showcases:
-
-- [showcases traveltimes](https://data.stadt-zuerich.ch/dataset/showcases/vbz_fahrzeiten_ogd)
-at Open Data Portal
-- [showcases passengerdata](https://data.stadt-zuerich.ch/dataset/showcases/vbz_fahrgastzahlen_ogd)
- at Open Data Portal
+Also have a look at [showcases](https://data.stadt-zuerich.ch/dataset/vbz_fahrgastzahlen_ogd#showcase).
 
 Do you want to share your output?  
 Feel free to contact us via github@vbz.ch or the
