@@ -1,4 +1,4 @@
-##### Description: How to get startet with passenger data by Verkehrsbetriebe
+##### Description: How to get started with passenger data by Verkehrsbetriebe
 #     Zürich (VBZ) from the open data platform of the City of Zurich
 #     https://data.stadt-zuerich.ch/dataset/vbz_fahrzeiten_ogd
 #     There you can also find further explanations (only in German)
