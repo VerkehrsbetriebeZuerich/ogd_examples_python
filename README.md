@@ -42,7 +42,7 @@ example_passengerdata.py
 
 **Input**
 
-In order to perform the example analysis you need to download a .csv-file containing 
+In order to perform the example analysis, you need to download a .csv-file containing 
 passenger data ("Reisende.csv") as well as three matching tables from the [Open Data Portal](https://data.stadt-zuerich.ch/dataset/vbz_fahrgastzahlen_ogd). There you can also find additional descriptions (in German only).
 
 - **[REISENDE.csv](https://data.stadt-zuerich.ch/dataset/vbz_fahrgastzahlen_ogd/resource/38b0c1e5-1f4e-444d-975c-61a462aa8ca6)**: Main table, contains information about the number of passengers etc.  
@@ -76,7 +76,7 @@ example_traveltimedata.py
 
 In order to perform the example analysis you need to download a .csv-file containing travel time as well as two matching tables from the [Open Data Portal](https://data.stadt-zuerich.ch/dataset/vbz_fahrgastzahlen_ogd). You'll also find additional descriptions there (only German at the moment)
 
-- **[Fahrzeiten_SOLL_IST_20200809_20200815.csv](https://data.stadt-zuerich.ch/dataset/vbz_fahrzeiten_ogd/resource/3029ec17-efea-44aa-9995-b8f10739aef2)**:Main table, contains actual travel time raw data (each file contains one week of data).
+- **[Fahrzeiten_SOLL_IST_20200809_20200815.csv](https://data.stadt-zuerich.ch/dataset/vbz_fahrzeiten_ogd/resource/3029ec17-efea-44aa-9995-b8f10739aef2)**: Main table, contains actual travel time raw data (each file contains one week of data).
 
 - **[Haltepunkt.csv](https://data.stadt-zuerich.ch/dataset/vbz_fahrzeiten_ogd/resource/7b6a666e-2df8-4846-b63c-b30ab5265111)**: Matching table, contains information about the GPS position of each stop point.
 
@@ -105,7 +105,7 @@ line | punctual | too early | delayed
 **A:** Yes, that's right, but you'll find the data at the Open Data Portal of the City of Zurich under https://data.stadt-zuerich.ch/. Check also the links above and within the code.
 
 **Q:** I've downloaded the datasets, but the script is still not running.  
-**A:** check the path within ```wd = os.chdir("*\\01_Daten\\01_Input\\")``` at the beginning. This must refer to the directory of the downloaded files at your disc
+**A:** check the path within ```wd = os.chdir("*\\01_Daten\\01_Input\\")``` at the beginning. This must be the directory of the downloaded files on your hard drive
 
 **Q:** Where can I get more information about the datasets?  
 **A:** You'll find the description of the metadata [here](https://data.stadt-zuerich.ch/dataset/vbz_fahrgastzahlen_ogd) (passenger data)
@@ -114,7 +114,7 @@ or [here](https://data.stadt-zuerich.ch/dataset/vbz_fahrzeiten_ogd) (travel time
 **Q:** Whats the difference between stop point and stop?  
 **A:** A stop (like "Bellevue") can contain several stop points or - in other words - platforms (e.g. Tramlines 2, 11, 8 towards "Bürkliplatz" or Tramlines 4, 15 towards "Helmhaus")
 
-**Q:** Is there a possibility within the passengerdata to get information about routes (origin-destination)?  
+**Q:** Is there a possibility within the passenger data to get information about routes (origin-destination)?  
 **A:** No. The data contain only information about "number of boarding passengers" and "number of disembarking passengers" but no information about "number of persons travelling from A to B".
 
 Something missing? Let us know your troubles during the work with the OGD/scripts from Verkehrsbetriebe Zürich! 
