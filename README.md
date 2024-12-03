@@ -10,9 +10,9 @@ Also have a look at [showcases](https://data.stadt-zuerich.ch/dataset/vbz_fahrga
 
 Do you want to share your output?  
 Feel free to contact us via github@vbz.ch or the
-[Open Data Portal contact-form](https://www.stadt-zuerich.ch/portal/de/index/ogd/kontakt.html)
+[Open Data Portal contact-form](https://www.stadt-zuerich.ch/portal/de/index/ogd/kontakt.html).
 
-For more transport data (Switzerland, not only Zurich) have a look at [opentransportdata](https://opentransportdata.swiss/de/)
+For additional transportation data covering Switzerland (not just Zurich), take a look at [opentransportdata](https://opentransportdata.swiss).
 
 ## Contents
 - [Dependencies](#Dependencies)
@@ -23,9 +23,7 @@ For more transport data (Switzerland, not only Zurich) have a look at [opentrans
 ## Dependencies
 
 ### Python
-- Python (version 3.8, Community Edition)
-- PyCharm (version 2020.2.3)
-
+- Python (version 3.11)
 
 ## Use cases
 
@@ -52,7 +50,7 @@ passenger data ("Reisende.csv") as well as three matching tables from the [Open 
 
 **Output**
 
-e.g passengers per line in total for 2019 based on the input tables above as shown in the example script (data frame "pax_line_year").
+e.g passengers per line in total for 2019 based on the input tables above as shown in the example script (data frame "pax_line_year"):
 
 Linien_Id | Linienname | Linienname_Fahrgastauskunft | pax_per_year
 ------------ | ------------- | ------------- | -------------
@@ -69,14 +67,13 @@ example_traveltimedata.py
 
 **Input**
 
-In order to perform the example analysis you need to download a .csv-file containing travel time as well as two matching tables from the [Open Data Portal](https://data.stadt-zuerich.ch/dataset/vbz_fahrgastzahlen_ogd). You'll also find additional descriptions there (only German at the moment)
+In order to perform the example analysis you need to download a .csv-file containing travel time as well as two matching tables from the [Open Data Portal](https://data.stadt-zuerich.ch/dataset/vbz_fahrzeiten_ogd_2020). You'll also find additional descriptions there (in German only).
 
-- **[Fahrzeiten_SOLL_IST_20200809_20200815.csv](https://data.stadt-zuerich.ch/dataset/vbz_fahrzeiten_ogd/resource/3029ec17-efea-44aa-9995-b8f10739aef2)**: Main table, contains actual travel time raw data (each file contains one week of data).
+- **Fahrzeiten_SOLL_IST_YYYYMMDD_YYYYMMDD.csv**: Main table, contains actual travel time raw data (each file contains one week of data).
 
-- **[Haltepunkt.csv](https://data.stadt-zuerich.ch/dataset/vbz_fahrzeiten_ogd/resource/7b6a666e-2df8-4846-b63c-b30ab5265111)**: Matching table, contains information about the GPS position of each stop point.
+- **Haltepunkt.csv**: Matching table, contains information about the GPS position of each stop point.
 
-
-- **[Haltestelle.csv](https://data.stadt-zuerich.ch/dataset/vbz_fahrzeiten_ogd/resource/7bb0405f-c009-498a-bc7c-d42bf7664e5f)**: Matching table, contains information about the full stop names.
+- **Haltestelle.csv**: Matching table, contains information about the full stop names.
 
 **Output**
 
@@ -96,30 +93,34 @@ line | punctual | too early | delayed
 
 ## FAQ
 
-**Q:** There is no data in "01_Data".  
-**A:** Yes, that's right, but you'll find the data at the Open Data Portal of the City of Zurich under https://data.stadt-zuerich.ch/. Check also the links above and within the code.
+**Q:** There is no data in the folder "data" <br>
+**A:** That’s correct. The data is not included in this repository. You can find it on the Open Data Portal of the City of Zurich at https://data.stadt-zuerich.ch/. <br>
+Be sure to check the links provided above and within the code for further guidance.
 
-**Q:** I've downloaded the datasets, but the script is still not running.  
-**A:** check the path within ```wd = os.chdir("*\\01_Daten\\01_Input\\")``` at the beginning. This must be the directory of the downloaded files on your hard drive
+**Q:** I’ve downloaded the datasets, but the script still isn’t running.<br>
+**A:** Please check the path specified in ``path_to_data = Path(r".../data")``. Ensure it points to the directory where the downloaded files are stored on your hard drive.
 
-**Q:** Where can I get more information about the datasets?  
-**A:** You'll find the description of the metadata [here](https://data.stadt-zuerich.ch/dataset/vbz_fahrgastzahlen_ogd) (passenger data)
-or [here](https://data.stadt-zuerich.ch/dataset/vbz_fahrzeiten_ogd) (travel time data).
+**Q:** Where can I get more information about the datasets?<br>
+**A:** You can find metadata descriptions at the following links:
+- [Passenger data](https://data.stadt-zuerich.ch/dataset/vbz_fahrgastzahlen_ogd)
+- [Travel time data, e.g. for 2020](https://data.stadt-zuerich.ch/dataset/vbz_fahrzeiten_ogd_2020)
 
-**Q:** Whats the difference between stop point and stop?  
-**A:** A stop (like "Bellevue") can contain several stop points or - in other words - platforms (e.g. Tramlines 2, 11, 8 towards "Bürkliplatz" or Tramlines 4, 15 towards "Helmhaus")
+**Q:** What’s the difference between a stop point and a stop?<br>
+**A:** A stop (e.g., "Bellevue") can include several stop points, which are essentially platforms. For instance:
+- Tram lines 2, 11, and 8 heading towards "Bürkliplatz"
+- Tram lines 4 and 15 heading towards "Helmhaus"<br>
 
-**Q:** Is there a possibility within the passenger data to get information about routes (origin-destination)?  
-**A:** No. The data contain only information about "number of boarding passengers" and "number of disembarking passengers" but no information about "number of persons travelling from A to B".
+Each platform is considered a separate stop point.
 
-Something missing? Let us know your troubles during the work with the OGD/scripts from Verkehrsbetriebe Zürich! 
+**Q:** Is it possible to derive route information (origin-destination) from the passenger data?<br>
+**A:** No, the data only provides information about the number of boarding passengers and the number of disembarking passengers. It does not include details about the number of people traveling between specific locations (A to B).<br>
 
+If anything is unclear or missing, feel free to let us know about any challenges you encounter while working with the OGD datasets or scripts provided by Verkehrsbetriebe Zürich!
 
 ## Contact
 
 Any feedback?
 
-Feel free to contact us via
-github@vbz.ch!
+Feel free to contact us via github@vbz.ch!
 
 
