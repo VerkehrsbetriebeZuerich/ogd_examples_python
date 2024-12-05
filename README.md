@@ -77,7 +77,7 @@ In order to perform the example analysis you need to download a .csv-file contai
 
 **Output**
 
-e.g percentage of the punctuality per line for 2019 based on the input tables above as shown in the example script (data frame "punctuality").
+e.g percentage of the punctuality per line based on the input tables above as shown in the example script (data frame "punctuality").
 
 According to the punctuality definition of VBZ, a ride is considered on time (punctual) when the actual arrival time at the stop
 does not exceed the scheduled arrival time by more than 2 minutes (otherwise defined as "delayed") or the actual
