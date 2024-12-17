@@ -1,5 +1,5 @@
 # How to get started with travel time data from Verkehrsbetriebe Zürich (VBZ) available on the open data platform of the City of Zurich. 
-#     This guide is based on the example dataset for 2020: https://data.stadt-zuerich.ch/dataset/vbz_fahrzeiten_ogd_2020.
+#     This guide is based on one example dataset for 2020: https://data.stadt-zuerich.ch/dataset/vbz_fahrzeiten_ogd_2020.
 #     There you can also find further explanations (only in German).
 #     Update: These datasets are no longer maintained on Open Data Zurich. Travel times of VBZ in the planned vs. actual comparison after 29.07.2023, can be found in the open data 
 #     catalog on opentransportdata.swiss at https://opentransportdata.swiss/en/dataset/istdaten.
